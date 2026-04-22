@@ -3,58 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>灵魂名著 · The Literary Soul</title>
+<title>万物母题 · The Archetype</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Noto+Serif+SC:wght@200;300;500&display=swap');
-  :root { --bg: #0a0a09; --accent: #b59a7d; --text: #ccc; --dim: #555; }
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@200;400&family=Noto+Serif+SC:wght@200;300;500&display=swap');
+  :root { --bg: #030305; --accent: #6366f1; --dim: #666; --bright: #e2e8f0; }
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   body {
     background-color: var(--bg);
-    background-image: radial-gradient(circle at 50% 50%, #1a1a14 0%, transparent 80%), url("https://www.transparenttextures.com/patterns/paper-fibers.png");
-    color: var(--text); font-family: "Noto Serif SC", serif;
-    display: flex; justify-content: center; align-items: center; min-height: 100vh; letter-spacing: 0.15em;
+    background-image: radial-gradient(circle at 50% 50%, #1e1b4b 0%, transparent 70%), url("https://www.transparenttextures.com/patterns/stardust.png");
+    color: var(--bright); font-family: "Noto Serif SC", serif;
+    display: flex; justify-content: center; align-items: center; min-height: 100vh; letter-spacing: 0.2em;
   }
   .container { width: 100%; max-width: 550px; padding: 20px; }
   .card {
-    background: rgba(12, 12, 10, 0.98); border: 1px solid rgba(181, 154, 125, 0.2);
-    padding: 60px 35px; text-align: center; position: relative; box-shadow: 0 0 80px rgba(0,0,0,0.9);
+    background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.05); padding: 80px 40px;
+    text-align: center; position: relative; box-shadow: 0 0 100px rgba(0,0,0,0.5);
   }
-  .ink-mark { width: 30px; height: 30px; margin: 0 auto 30px; background: var(--accent); border-radius: 50% 0 50% 50%; transform: rotate(-45deg); opacity: 0.6; box-shadow: 0 0 20px rgba(181, 154, 125, 0.3); }
-  .top-meta { font-family: 'Cinzel', serif; font-size: 9px; color: var(--accent); margin-bottom: 15px; letter-spacing: 8px; }
-  h1 { font-size: 26px; font-weight: 200; margin-bottom: 25px; letter-spacing: 12px; color: #fff; }
-  .sub { font-size: 13px; line-height: 2.6; color: #666; margin-bottom: 50px; }
-  .options { display: grid; gap: 10px; }
-  .opt-btn { padding: 18px; border: 1px solid rgba(181, 154, 125, 0.1); background: transparent; color: #888; cursor: pointer; transition: 0.3s; font-family: inherit; font-size: 14px; }
-  .opt-btn:hover { background: rgba(181, 154, 125, 0.05); color: #eee; border-color: var(--accent); }
+  .orb {
+    width: 80px; height: 80px; margin: 0 auto 40px;
+    background: radial-gradient(circle at 30% 30%, #fff, transparent);
+    border-radius: 50%; box-shadow: 0 0 50px rgba(99, 102, 241, 0.5);
+    animation: pulse 8s infinite ease-in-out;
+  }
+  @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.6; } 50% { transform: scale(1.2); opacity: 0.9; } }
+  .top-meta { font-family: 'Cinzel', serif; font-size: 10px; color: var(--accent); margin-bottom: 20px; letter-spacing: 10px; }
+  h1 { font-size: 30px; font-weight: 200; margin-bottom: 30px; letter-spacing: 20px; color: #fff; padding-left: 20px; }
+  .sub { font-size: 13px; line-height: 2.8; color: var(--dim); margin-bottom: 60px; }
+  .options { display: grid; gap: 12px; }
+  .opt-btn {
+    padding: 22px; border: 1px solid rgba(255,255,255,0.05);
+    background: transparent; color: #888; cursor: pointer; transition: 0.4s;
+    font-family: inherit; font-size: 14px;
+  }
+  .opt-btn:hover { background: rgba(99, 102, 241, 0.1); color: #fff; border-color: var(--accent); }
   .result-page { display: none; text-align: left; }
-  .res-header { text-align: center; margin-bottom: 40px; }
-  .res-title { font-size: 28px; letter-spacing: 4px; color: #fff; font-weight: 300; margin-bottom: 8px; }
-  .res-subtitle { font-family: 'Cinzel', serif; font-size: 10px; color: var(--accent); letter-spacing: 3px; }
-  .res-section { margin-bottom: 30px; padding-left: 15px; border-left: 1px solid var(--accent); }
-  .sec-label { font-family: 'Cinzel', serif; font-size: 9px; color: var(--accent); margin-bottom: 10px; display: block; }
-  .sec-content { font-size: 13.5px; line-height: 2.4; color: #999; }
-  .tag-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 25px; }
-  .tag-item { background: rgba(181, 154, 125, 0.03); padding: 12px; border: 0.5px solid rgba(181, 154, 125, 0.1); }
-  .tag-label { font-size: 9px; color: #555; display: block; margin-bottom: 4px; }
-  .tag-val { font-size: 11.5px; color: #bbb; }
-  .btn-main { padding: 15px 45px; border: 1px solid var(--accent); background: transparent; color: #fff; font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 6px; cursor: pointer; display: block; margin: 40px auto 0; }
-  .progress { position: absolute; top: 0; left: 0; height: 1px; background: var(--accent); transition: width 0.4s; }
+  .res-header { text-align: center; margin-bottom: 50px; }
+  .res-title { font-size: 36px; letter-spacing: 12px; color: #fff; font-weight: 200; margin-bottom: 10px; }
+  .res-subtitle { font-family: 'Cinzel', serif; font-size: 12px; color: var(--accent); letter-spacing: 5px; }
+  .res-section { margin-bottom: 40px; padding-left: 20px; border-left: 1px solid rgba(99, 102, 241, 0.3); }
+  .sec-label { font-family: 'Cinzel', serif; font-size: 10px; color: var(--accent); margin-bottom: 15px; display: block; }
+  .sec-content { font-size: 14px; line-height: 2.6; color: #999; }
+  .tag-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+  .tag-item { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 4px; }
+  .tag-label { font-size: 9px; color: var(--dim); display: block; margin-bottom: 5px; }
+  .tag-val { font-size: 12px; color: var(--bright); }
+  .btn-main { padding: 18px 60px; border: 1px solid var(--accent); background: transparent; color: #fff; font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 10px; cursor: pointer; display: block; margin: 60px auto 0; }
+  .progress-bar { position: absolute; top: 0; left: 0; height: 2px; background: var(--accent); transition: width 0.4s; }
 </style>
 </head>
 <body>
   <div class="container">
     <div class="card" id="card">
-      <div class="progress" id="progress" style="width: 0%"></div>
+      <div class="progress-bar" id="progress" style="width: 0%"></div>
       <div id="cover">
-        <div class="ink-mark"></div>
-        <div class="top-meta">LITERARY ARCHETYPE</div>
-        <h1>灵魂名著</h1>
-        <div class="sub">如果灵魂是一本被反复翻阅的经典，<br>你是哪一段永恒的叙事？<br>在15道思想的博弈中，完成你的侧写。</div>
-        <button class="btn-main" onclick="start()">开启扉页</button>
+        <div class="orb"></div>
+        <div class="top-meta">ORIGIN MOTIF</div>
+        <h1>万物母题</h1>
+        <div class="sub">剥离文明的喧嚣，回归物理的寂静。<br>在宇宙的底层逻辑中，<br>你是哪一种永恒的意志？</div>
+        <button class="btn-main" onclick="start()">溯 源</button>
       </div>
       <div id="quiz" style="display:none">
-        <div class="top-meta" id="qNum">CHAPTER 01</div>
-        <div id="qText" class="sub" style="color:#bbb; min-height:100px; display:flex; align-items:center; justify-content:center;">...</div>
+        <div class="top-meta" id="qNum">PHASE 01</div>
+        <div id="qText" class="sub" style="color:#eee; font-size:16px; min-height:150px; display:flex; align-items:center; justify-content:center; text-align:center; padding: 0 10px;">...</div>
         <div id="qOpts" class="options"></div>
       </div>
       <div id="result" class="result-page">
@@ -63,67 +74,66 @@
           <div class="res-subtitle" id="resSub"></div>
         </div>
         <div class="res-section">
-          <span class="sec-label">灵魂侧写 / Soul Profiling</span>
+          <span class="sec-label">意志解析 / Analysis</span>
           <div class="sec-content" id="resDesc"></div>
         </div>
         <div class="res-section">
-          <span class="sec-label">核心冲突 / Core Conflict</span>
-          <div class="sec-content" id="resConflict"></div>
+          <span class="sec-label">矛盾统一 / Paradox</span>
+          <div class="sec-content" id="resParadox"></div>
         </div>
         <div class="tag-grid">
-          <div class="tag-item"><span class="tag-label">精神气味</span><span class="tag-val" id="tagScent"></span></div>
-          <div class="tag-item"><span class="tag-label">灵魂注脚</span><span class="tag-val" id="tagNote"></span></div>
-          <div class="tag-item"><span class="tag-label">契合作者</span><span class="tag-val" id="tagAuthor"></span></div>
-          <div class="tag-item"><span class="tag-label">生命底色</span><span class="tag-val" id="tagHue"></span></div>
+          <div class="tag-item"><span class="tag-label">精神气味 / Scent</span><span class="tag-val" id="tagScent"></span></div>
+          <div class="tag-item"><span class="tag-label">核心频率 / Freq</span><span class="tag-val" id="tagFreq"></span></div>
+          <div class="tag-item"><span class="tag-label">契合母题 / Sync</span><span class="tag-val" id="tagSync"></span></div>
+          <div class="tag-item"><span class="tag-label">生活侧写 / Profile</span><span class="tag-val" id="tagProfile"></span></div>
         </div>
-        <button class="btn-main" onclick="location.reload()">重新阅读</button>
+        <button class="btn-main" onclick="location.reload()">RE-ORIGIN</button>
       </div>
     </div>
   </div>
 <script>
-// 维度：R(现实-浪漫), B(秩序-叛逆), S(孤独-连接), T(悲剧-救赎)
 const P={
-  gatsby:{n:"《了不起的盖茨比》",s:"The Eternal Dreamer",d:"你拥有一种近乎神圣的「希望」天赋。你的一生都在追逐一个遥远的绿光，哪怕那光芒属于过去。你用华丽的物质或虚幻的理想来包裹一颗纯真且孤独的心。",c:"纯粹的理想与腐朽现实之间的永恒拉锯。",sc:"海水的咸味与昂贵的香槟",note:"我们继续奋力向前，逆水行舟。",author:"菲茨杰拉德",hue:"爵士时代的金与忧郁的蓝",a:{R:-1,B:1,S:1,T:-.5}},
-  karamazov:{n:"《卡拉马佐夫兄弟》",s:"The Soul Seeker",d:"你的灵魂是一个巨大的战场，上帝与魔鬼在这里博弈。你深刻、沉重，对人性的黑暗与光辉都有着惊人的直觉。你无法停止对终极意义的拷问。",c:"对自由意志的渴望与对苦难的深刻同情。",sc:"寒冷的泥土与焚香",note:"要爱生活，胜过爱生活的意义。",author:"陀思妥耶夫斯基",hue:"深沉的铁锈红",a:{R:1,B:-.5,S:-.5,T:1}},
-  solitude:{n:"《百年孤独》",s:"The Solitary Oracle",d:"你的一生是一场漫长的循环。你在繁华中看见荒凉，在血缘中看见疏离。你拥有一种魔幻的视角，能将琐碎的生活升华为永恒的史诗。",c:"个体在历史洪流中无法逃脱的孤独宿命。",sc:"潮湿的雨林与羊皮纸",note:"生命中所有的灿烂，终究都要用寂寞来偿还。",author:"马尔克斯",hue:"枯萎的琥珀色",a:{R:-.5,B:1,S:1,T:-1}},
-  stranger:{n:"《局外人》",s:"The Absurd Observer",d:"你以一种近乎冷酷的诚实观察着世界。你拒绝参与虚伪的情感表演，这让你显得与世界格格不入。你拥抱荒诞，并在荒诞中获得了某种奇异的自由。",c:"真实的自我与社会道德契约之间的断裂。",sc:"烈日下的海滩与干硬的岩石",note:"我第一次向这个冷漠的世界敞开了心扉。",author:"加缪",hue:"苍白的日光色",a:{R:1,B:1,S:1,T:0}},
-  redchamber:{n:"《红楼梦》",s:"The Fragile Visionary",d:"你拥有一颗极度敏锐且多情的心。你见证了繁华的极致，也预见了幻灭的必然。你的一生是在美与痛的交织中，完成一场关于「空」的修行。",c:"至情至性与万物皆空的终极悖论。",sc:"冷香丸与枯萎的落花",note:"好一似食尽鸟投林，落了片片干净。",author:"曹雪芹",hue:"残阳般的胭脂红",a:{R:-1,B:-.8,S:-.8,T:-1}},
-  ulysses:{n:"《尤利西斯》",s:"The Urban Wanderer",d:"你的一生是一场在琐碎日常中进行的奥德赛。你博学、杂乱、充满意识流的跳跃。你在平凡的行走与思考中，构建了一个宏大的精神宇宙。",c:"平庸生活中的英雄主义与精神流浪。",sc:"清晨的咖啡与旧报纸",note:"是的，我说我愿意，是的。",author:"乔伊斯",hue:"迷宫般的灰色",a:{R:1,B:-1,S:-1,T:.5}},
-  hamlet:{n:"《哈姆雷特》",s:"The Hesitant Thinker",d:"生存还是毁灭？你永远在行动与思考的边缘徘徊。你拥有极高的心智，却也因此背负了沉重的精神枷锁。你的一生是对真相的痛苦追寻。",c:"清醒的认知与瘫痪的行动力。",sc:"深夜的冷风与陈旧的盔甲",note:"即便被关在果壳之中，我仍自以为是无限空间之王。",author:"莎士比亚",hue:"忧郁的深紫",a:{R:.5,B:1,S:1,T:-.8}},
-  faust:{n:"《浮士德》",s:"The Eternal Striver",d:"你永不满足。你愿意为了更广阔的知识、更深刻的体验而交付灵魂。你的一生是不断的超越，是在坠落与上升之间的永恒运动。",c:"有限的生命与无限欲望之间的冲突。",sc:"古老实验室的硫磺味",note:"凡是自强不息者，到头来总能获救。",author:"歌德",hue:"燃烧的暗金",a:{R:-1,B:1,S:-.5,T:1}},
-  quixote:{n:"《堂吉诃德》",s:"The Knight of Faith",d:"在别人眼中你是疯子，在你眼中世界是战场。你拒绝接受平庸的现实，宁愿活在自己构建的高尚幻梦中。你是最后一个理想主义骑士。",c:"高尚的幻觉与卑微现实的碰撞。",sc:"干燥的尘土与陈旧的皮革",note:"为了追寻那遥不可及的星。 ",author:"塞万提斯",hue:"明亮的土黄色",a:{R:-1,B:-1,S:1,T:.8}},
-  metamorphosis:{n:"《变形记》",s:"The Alienated Soul",d:"你感到自己与世界格格不入，仿佛一夜之间变成了异类。你承担着责任，却得不到理解。你的一生是在沉默中逐渐枯萎的异化过程。",c:"个体价值在工具化社会中的彻底崩塌。",sc:"阴暗房间里的霉味",note:"他回想起自己的家人，心中充满了温情和爱。",author:"卡夫卡",hue:"压抑的甲壳棕",a:{R:1,B:1,S:1,T:-1}},
-  siddhartha:{n:"《悉达多》",s:"The Silent Seeker",d:"你经历过放纵，也经历过苦修，最终在流水的静默中找到了真理。你不再向外寻求，而是向内觉醒。你的一生是一场圆满的归家之旅。",c:"自我的迷失与万物合一的觉悟。",sc:"恒河边的水汽与檀香",note:"知识可以传授，但智慧不能。",author:"黑塞",hue:"宁静的河水绿",a:{R:-.5,B:-1,S:1,T:1}},
-  nineteen84:{n:"《1984》",s:"The Conscious Watcher",d:"在众人都沉睡或狂热时，你是那个痛苦的清醒者。你珍视记忆与真相，即便它们会让你粉身碎骨。你的一生是对自由灵魂的最后守望。",c:"脆弱的人性与庞大的权力机器。",sc:"廉价的杜松子酒与陈旧的灰尘",note:"在仇恨的时代，保持爱是一种革命。",author:"奥威尔",hue:"冰冷的铁灰色",a:{R:1,B:1,S:1,T:-.9}},
-  moby:{n:"《白鲸》",s:"The Willful Avenger",d:"你拥有一种近乎毁灭性的意志力。为了追逐心中的那个目标（或仇恨），你可以牺牲一切。你的一生是与命运、与自然、与神性的惨烈搏斗。",c:"人类意志与不可抗拒的自然伟力。",sc:"咸腥的海风与鲸油味",note:"我从地狱的核心刺向你。",author:"梅尔维尔",hue:"狂暴的深海蓝",a:{R:-.8,B:-1,S:1,T:-.5}},
-  janeeyre:{n:"《简·爱》",s:"The Dignified Rebel",d:"你贫穷、低微、不美，但你拥有最坚韧的自尊。你拒绝依附，拒绝施舍，你要求的是灵魂的平等。你的一生是自我尊严的抗争史。",c:"卑微的出身与高贵的灵魂尊严。",sc:"雨后的石楠花与壁炉火",note:"我不是作为血肉之躯在同你说话，而是我的灵魂同你的灵魂在对话。",author:"夏洛特·勃朗特",hue:"坚韧的石楠灰",a:{R:1,B:-1,S:-.5,T:1}},
-  walden:{n:"《瓦尔登湖》",s:"The Minimalist Hermit",d:"你向往极简的生活，认为文明的繁琐只是负担。你愿意在自然中寻找灵魂的养分，在寂静中听见内心的声音。你的一生是向生活本质的深挖。",c:"物质的匮乏与精神的极度丰盈。",sc:"松针与清晨湖水的清香",note:"我步入丛林，因为我希望活得深刻。",author:"梭罗",hue:"原木色与森林绿",a:{R:1,B:-1,S:1,T:1}},
-  inferno:{n:"《神曲》",s:"The Abyssal Pilgrim",d:"你的一生是一场穿越地狱与炼狱，最终抵达天堂的朝圣。你敢于直面人性最深处的罪恶，并从中寻找上升的路径。你是一个永恒的攀登者。",c:"肉体的沉沦与灵魂的净化。",sc:"硫磺、血迹与星光的混合",note:"在这里，一切犹豫都必须抛弃。",author:"但丁",hue:"从暗红到极光的渐变",a:{R:-1,B:1,S:-1,T:1}}
+  neutron:{n:"坍缩的中子星",s:"Extreme Density",d:"你将庞大的质量压缩在微小的体积内，外表冷峻坚硬，核心却在疯狂自旋。你并不轻易示人，但任何靠近你的物质都会被你那恐怖的引力重塑。你代表着秩序的终极形态，也是爆发前最深沉的寂静。",p:"你拥有极强的掌控欲，却又在内心深处渴望一个能让你彻底卸下防备的黑洞。你用秩序对抗焦虑，用沉默掩盖爆发。",sc:"冷冽的生铁与臭氧味",fr:"0.001Hz 极低频脉冲",sy:"奇点黑洞",pr:"凌晨三点的清醒者",a:{C:.9,D:.8,O:1,T:-.7,M:-.9,E:.6}},
+  nebula:{n:"初生的弥散星云",s:"Cradle of Stars",d:"你拥有一种温柔而广阔的混沌感。你拒绝被定义，拒绝被固化。你是色彩斑斓的尘埃与气体，漫无目的地漂浮在深空之中。然而，正是这种看似无序的扩散，孕育了未来的恒星。",p:"你对他人的痛苦有着天然的共感，却常在自己的情绪迷雾中走失。你给予他人无限的可能性，却唯独对自己感到迷茫。",sc:"雨后森林的泥土与新芽",fr:"432Hz 宇宙治愈音",sy:"超新星残骸",pr:"永远的理想主义者",a:{C:-.8,D:-.9,O:-.9,T:.4,M:1,E:.8}},
+  blackhole:{n:"奇点黑洞",s:"The Great Devourer",d:"你是宇宙最深处的欲望，试图将万物归一。在你的视界之内，一切逻辑都失效了。你是万物的终点，也是通往另一个不可知维度的唯一入口。",p:"你极度渴望亲密与融合，却又在潜意识里害怕被他人彻底看穿。你通过不断索取信息或情感来填补内心的虚无。",sc:"焚烧过后的旧报纸与灰烬",fr:"0Hz 绝对静默",sy:"坍缩的中子星",pr:"秘密的守护者",a:{C:.7,D:1,O:.9,T:-.9,M:-.98,E:-.9}},
+  solarflare:{n:"恒星耀斑",s:"Plasma Eruption",d:"你是纯粹的能量爆发，无法忍受长久的压抑。你炽热、狂暴、不可阻挡，能瞬间摧毁电子的秩序。你的辉煌虽然短暂，但足以照亮整个星系。",p:"你拥有极其耀眼的才华，却常因无法控制情绪而自伤。你渴望被看见，却又在被注视时感到一种毁灭性的灼热。",sc:"干燥的木材与电火花",fr:"528Hz 能量频率",sy:"类星体",pr:"瞬间的完美主义者",a:{C:-.98,D:-.6,O:-.9,T:1,M:.5,E:-.5}},
+  entropy:{n:"热寂的余温",s:"The Final Echo",d:"你是宇宙最后的温柔。当恒星熄灭，黑洞蒸发，你作为微弱的背景辐射，均匀地铺满整个空间。你代表着彻底的平等与终极的自由。你不再有形状，不再有重量，你只是存在本身。",p:"你已经看穿了所有竞争与输赢的虚妄。你表现得随和且不争，但这种淡然背后，其实是对世界最彻底的疏离。",sc:"冬日清晨干爽的冷空气",fr:"7.83Hz 舒曼波",sy:"暗物质云",pr:"看透剧本的观众",a:{C:1,D:-.2,O:-.8,T:-.9,M:1,E:.95}},
+  quantum:{n:"量子叠加态",s:"Infinite Possibility",d:"你是逻辑的悖论，是现实的缝隙。你拒绝被观测，因为一旦被确定，你便失去了无限的可能性。你既是波也是粒子，既是生也是死。你的一生是一场永恒的捉迷藏。",p:"你讨厌被贴标签，甚至讨厌被自己定义。你拥有一种近乎神性的逃避倾向，在每一个决定面前都感到一种神圣的迟疑。",sc:"雷雨前夕潮湿的空气",fr:"随机波动的白噪音",sy:"真空零点能",pr:"不可捉摸的游离者",a:{C:-.5,D:-.5,O:-.98,T:0,M:-1,E:.4}},
+  pulsar:{n:"深空脉冲星",s:"Rhythmic Beacon",d:"你是绝对理性的化身。在漫无边际的虚无中，你以微秒级的精度向全宇宙广播你的存在。你并不关心是否有人收听，你只关心自己的节奏。你拥有一种孤独而高傲的纯粹。",p:"你用极度的自律和规律来对抗世界的不确定性。你看起来极其可靠，但这种可靠是你为了不让自己崩溃而筑起的围墙。",sc:"古旧图书馆的羊皮纸味",fr:"1.4Hz 精准脉冲",sy:"分形晶体",pr:"自律的苦行僧",a:{C:.8,D:.2,O:.98,T:.6,M:-.6,E:.9}},
+  rogue:{n:"流浪行星",s:"Absolute Freedom",d:"你是挣脱了引力束缚的游侠。你不再围绕任何恒星旋转，也不再受制于任何星系的秩序。你在永恒的黑暗中孤独地穿行，寒冷是你的铠甲，自由是你的底色。",p:"你追求极致的独立，拒绝任何形式的依赖。你害怕被束缚，却在获得绝对自由的瞬间，感到一种深入骨髓的寒冷。",sc:"深海深处冰冷的海水味",fr:"无规则的远空电波",sy:"真空零点能",pr:"不回头的异乡人",a:{C:.3,D:-.8,O:-.6,T:-.98,M:.8,E:-.7}},
+  supernova:{n:"超新星残骸",s:"Magnificent Rebirth",d:"你是毁灭后的华丽重组。你曾经历过最惨烈的崩塌，但你并未消失，而是化作了星际间最珍贵的元素。你代表着死亡与重生的交织，你是旧世界的终结，也是新世界诞生的原材料。",p:"你总是在彻底搞砸一件事后，才能爆发出惊人的创造力。你迷恋那种“置之死地而后生”的快感，却也因此疲惫不堪。",sc:"金属碰撞产生的火药味",fr:"不稳定的震荡波",sy:"初生的弥散星云",pr:"涅槃的幸存者",a:{C:-.9,D:.4,O:-.5,T:.6,M:.9,E:.8}},
+  vacuum:{n:"真空零点能",s:"Boiling Void",d:"你是虚无中沸腾的奇迹。即便在绝对的空无中，你依然在进行着微小的、不可观测的涨落。你代表着生命最底层的顽强——只要空间存在，你就存在。",p:"你看起来无欲无求，但内心其实充满了细碎的、永不停歇的渴望。你在最荒凉的环境里也能找到活下去的理由。",sc:"刚拆封的电子产品味",fr:"微小的量子涨落",sy:"量子叠加态",pr:"极简主义的生存家",a:{C:-.2,D:-.9,O:-.9,T:-.8,M:-.98,E:.98}},
+  darkmatter:{n:"暗物质云",s:"Silent Presence",d:"你是宇宙中沉默的大多数。你占据了绝大部分的质量，却从不与光发生交互。你默默地维持着星系的旋转，却从不索取名分。你代表着一种深沉的守护。",p:"你拥有强大的能量，却习惯于隐藏在幕后。你害怕成为焦点，却在被彻底忽视时感到一种隐秘的失落。",sc:"深夜森林里泥土的深沉气味",fr:"不可听见的次声波",sy:"热寂的余温",pr:"幕后的支撑者",a:{C:1,D:.2,O:.7,T:-.9,M:1,E:-.3}},
+  gravitywave:{n:"原初引力波",s:"Eternal Tremor",d:"你是穿越时空的永恒震颤。你诞生于宇宙大爆炸的瞬间，至今仍在时空的结构中荡漾。你代表着最古老的记忆，记录了万物起源时的那场剧变。",p:"你对过去有着近乎病态的留恋。你总是能从当下的琐碎中，听见遥远历史的回响。你的一生都在试图寻找那个最初的源头。",sc:"陈年老酒与旧木箱的气息",fr:"时空的涟漪频率",sy:"极地永冻层",pr:"怀旧的记录者",a:{C:.5,D:-.5,O:.8,T:-.8,M:1,E:1}},
+  quasar:{n:"类星体",s:"Violent Brilliance",d:"你是宇宙中最明亮的暴戾中心。在你的核心，物质正以近乎光速的速度坠入黑洞，释放出足以遮蔽整个星系的光芒。你代表着极端的权力与能量。",p:"你拥有一种令人恐惧的魅力。你极度自信，却也极度孤独。你用光芒掩盖了核心处那个永远无法填满的黑洞。",sc:"强紫外线照射后的焦灼感",fr:"高能伽马射线频率",sy:"恒星耀斑",pr:"孤独的统治者",a:{C:-.9,D:1,O:.4,T:1,M:.8,E:-.8}},
+  fractal:{n:"分形晶体",s:"Infinite Self-Similarity",d:"你是自我复制的完美几何。无论放大多少倍，你的结构依然如故。你代表着逻辑的极致美感，你相信微观即宏观，局部即整体。",p:"你对细节有种近乎强迫症的执着。你试图用逻辑解释一切，却在面对非理性的情感时感到彻底的无能为力。",sc:"薄荷与冰块的清冽感",fr:"完美的几何谐波",sy:"深空脉冲星",pr:"逻辑的编织者",a:{C:.9,D:-.4,O:1,T:-.4,M:-.8,E:.7}},
+  photon:{n:"光子晶格",s:"Trapped Light",d:"你是被禁锢的纯粹能量。你本应以光速飞翔，却被某种精密的结构锁死在原地。你代表着被压抑的才华与被束缚的灵性。",p:"你拥有一种随时准备逃离现状的冲动。你表现得温顺，但内心深处一直在等待那个能让你彻底爆发的机会。",sc:"高压电弧击穿空气的味道",fr:"被禁锢的光波频率",sy:"类星体",pr:"潜伏的爆发者",a:{C:.6,D:-.7,O:.98,T:.8,M:-.9,E:.2}},
+  permafrost:{n:"极地永冻层",s:"Frozen Memory",d:"你是时间的守墓人。你拒绝流转，在你的世界里，数万年前的呼吸依然清晰可见。你拥有一种近乎残酷的冷静，能让一切喧嚣瞬间凝固。",p:"你用冷漠保护自己不被伤害。你深信只有静止的东西才是真实的，任何流动的情感都让你感到不安。",sc:"冰川融水与古老岩石味",fr:"极低频的地球共振",sy:"原初引力波",pr:"情感的守墓人",a:{C:1,D:.3,O:.8,T:-1,M:.4,E:1}}
 };
 
 const Q=[
-  {q:"如果你的生命是一部小说，你希望它的第一句话是？",o:[["“多年以后，面对行刑队，他将会回想起...”","solitude",{B:1,S:1}],["“我是一个局外人，甚至在自己的葬礼上。”","stranger",{R:1,S:1}],["“所有的孩子都会长大，除了一个人。”","faust",{R:-1,B:1}],["“我贫穷、低微、不美，但我的灵魂是平等的。”","janeeyre",{B:-1,T:1}]]},
-  {q:"在你的精神世界里，最核心的意象是？",o:[["海面上那一盏永恒跳动的绿灯","gatsby",{R:-1,B:1}],["在荒原上独自面对一只巨大的白鲸","moby",{B:-1,S:1}],["在深夜的湖边，静听松针落地的声音","walden",{S:1,R:1}],["在迷宫般的城市里，记录每一个琐碎的瞬间","ulysses",{R:1,S:-1}]]},
-  {q:"面对不可违抗的命运，你会？",o:[["明知不可为而为之，哪怕化为灰烬","quixote",{R:-1,B:-1}],["在沉默中接受，并试图理解其中的荒诞","stranger",{R:1,B:1}],["在痛苦中不断拷问，寻找救赎的可能","karamazov",{T:1,S:-1}],["构建一个属于自己的幻梦，将其作为避难所","redchamber",{R:-1,S:1}]]},
-  {q:"你认为人类最伟大的品质是？",o:[["永不熄灭的欲望与进取心","faust",{B:1,T:1}],["在极端孤独中保持的清醒与尊严","nineteen84",{S:1,R:1}],["对万物生灵最深沉的同情与爱","karamazov",{S:-1,T:1}],["看透繁华后的那份平静与觉悟","siddhartha",{R:-1,B:-1}]]},
-  {q:"当你在人群中感到疏离，你的反应是？",o:[["感到一种被异化的恐惧与无助","metamorphosis",{T:-1,S:1}],["坦然享受这种孤独，并将其作为观察的视角","stranger",{R:1,S:1}],["试图用更疯狂的社交来填补空虚","gatsby",{R:-1,S:-1}],["在内心构建一个更宏大的精神世界","ulysses",{R:1,S:1}]]},
-  {q:"关于「过去」，你的态度是？",o:[["那是我们永远无法逃离的引力","solitude",{B:1,T:-1}],["那是我们不断试图修正、却越陷越深的泥潭","gatsby",{R:-1,B:1}],["那是我们必须穿越的炼狱，为了抵达未来","inferno",{T:1,B:1}],["那是已经风化的灰烬，不值得回头","stranger",{R:1,B:1}]]},
-  {q:"你最向往的居住地是？",o:[["一座充满历史尘埃与秘密的百年老宅","solitude",{S:1,B:1}],["一间只有书本、面包与湖水的简陋木屋","walden",{R:1,S:1}],["一个永远在狂欢、永远不入睡的爵士乐之城","gatsby",{R:-1,S:-1}],["一个能听见恒河水声、充满禅意的丛林","siddhartha",{R:-1,B:-1}]]},
-  {q:"你如何看待「痛苦」？",o:[["它是通往更高觉悟的必经之路","karamazov",{T:1,R:1}],["它是世界荒诞本质的直接体现","stranger",{R:1,B:1}],["它是美的一部分，让毁灭变得动人","redchamber",{R:-1,T:-1}],["它是意志的磨刀石，让我们更强韧","janeeyre",{B:-1,T:1}]]},
-  {q:"如果你能拥有一种超凡力量，你希望是？",o:[["看穿时间循环与因果的能力","solitude",{B:1,S:1}],["永恒的生命与不断探索的精力","faust",{B:1,T:1}],["能瞬间移动到任何精神净土的能力","siddhartha",{R:-1,B:-1}],["能让真相在谎言中显影的能力","nineteen84",{R:1,B:1}]]},
-  {q:"你认为爱情的本质是？",o:[["一种高尚的幻觉，值得为之献祭","gatsby",{R:-1,B:1}],["两个孤独灵魂在荒原上的相互取暖","janeeyre",{S:-1,T:1}],["一场注定幻灭的繁华美梦","redchamber",{R:-1,T:-1}],["一种原始的、充满神性的生命冲动","karamazov",{R:1,T:1}]]},
-  {q:"当社会规则与你的内心冲突时，你会？",o:[["表面顺从，内心保持最彻底的冷漠","stranger",{R:1,B:1}],["公开反抗，哪怕代价是粉身碎骨","janeeyre",{B:-1,T:1}],["在沉默中逐渐枯萎，化为异类","metamorphosis",{T:-1,S:1}],["利用规则，达成自己更高维度的目的","faust",{B:1,I:1}]]},
-  {q:"你最害怕哪种形式的终结？",o:[["毫无意义的、像甲虫一样的死去","metamorphosis",{T:-1,S:1}],["被彻底遗忘，连同名字一起消失","solitude",{B:1,S:1}],["发现自己追求一生的东西只是个谎言","gatsby",{R:-1,B:1}],["在平庸中慢慢腐烂，从未真正活过","faust",{B:1,T:1}]]},
-  {q:"你如何理解「自由」？",o:[["自由是看清枷锁后的那份坦然","stranger",{R:1,B:1}],["自由是挣脱一切物质束缚的轻盈","walden",{R:1,S:1}],["自由是不断超越自我、永不停止的意志","faust",{B:1,T:1}],["自由是与万物合一、不再有“我”的觉悟","siddhartha",{R:-1,B:-1}]]},
-  {q:"你认为美的极致是？",o:[["毁灭那一刻的壮丽与感伤","redchamber",{R:-1,T:-1}],["在极度简朴中透出的神性","walden",{R:1,S:1}],["在混乱与肮脏中开出的灵魂之花","karamazov",{T:1,R:1}],["在无限的意识流中捕捉到的瞬间","ulysses",{R:1,S:-1}]]},
-  {q:"如果宇宙是一本书，你希望你是？",o:[["一个记录所有细节的、全知全能的叙述者","solitude",{B:1,S:1}],["一个不断推翻旧情节、书写新篇章的作者","faust",{B:1,T:1}],["一个在字里行间寻找意义的孤独读者","hamlet",{S:1,B:1}],["一个拒绝被写进结局的、叛逆的注脚","stranger",{R:1,B:1}]]}
+  {q:"如果宇宙是一场交响乐，你认为自己是？",o:[["永恒重复、作为底色的低音频率","entropy",{C:1,O:1}],["突然爆发、撕裂寂静的尖锐高音","solarflare",{C:-1,T:1}],["精准到微秒、从不迟疑的鼓点","pulsar",{O:1,M:-1}],["乐章结束后的那段令人窒息的空白","blackhole",{D:1,E:-1}]]},
+  {q:"面对一个正在坍缩的恒星，你的本能感受是？",o:[["一种回归母体的、宿命般的宁静","blackhole",{D:1,E:-1}],["一种想要将其能量瞬间释放的冲动","solarflare",{C:-1,T:1}],["观察其物质压缩后产生的完美几何结构","neutron",{O:1,M:-1}],["感叹一段漫长记忆的终结与消散","entropy",{E:1,C:1}]]},
+  {q:"你最向往的物理状态是？",o:[["绝对零度下、万年不化的静止","permafrost",{T:-1,E:1}],["核聚变中心、物质化为流光的炽热","solarflare",{T:1,C:-1}],["星系边缘、空无一物的广袤虚无","nebula",{M:1,D:-1}],["微观世界里、概率云跳动的虚空","quantum",{M:-1,O:-1}]]},
+  {q:"关于「占有」，你的物理直觉是？",o:[["吞噬一切，让万物在我的核心归一","blackhole",{D:1,O:1}],["全然散发，将能量毫无保留地播撒","nebula",{D:-1,C:-1}],["封存一切，让时间在这一刻永远凝固","permafrost",{E:1,T:-1}],["不留痕迹，像粒子穿过幽灵般穿过万物","vacuum",{M:-1,E:1}]]},
+  {q:"如果时间可以被具象化，它在你眼中是？",o:[["一条永不停歇、奔向热寂的单向河流","entropy",{C:1,E:1}],["一个无限循环、严丝合缝的精密齿轮","pulsar",{O:1,E:1}],["无数个瞬间爆发、又瞬间熄灭的火花","solarflare",{C:-1,T:1}],["一片静止的深海，过去与未来并存其中","permafrost",{E:1,T:-1}]]},
+  {q:"你如何理解「秩序」？",o:[["极度压缩后的坚硬与纯粹","neutron",{O:1,M:-1}],["混乱到极致后产生的宏观平衡","nebula",{O:-1,M:1}],["不可违抗、精准运行的物理定律","pulsar",{O:1,C:1}],["人为的幻觉，底层只有随机的跳动","quantum",{O:-1,M:-1}]]},
+  {q:"当万物最终消亡，你希望留下什么？",o:[["一段微弱但永不消失的背景回响","gravitywave",{E:1,M:1}],["一个密度无限大、承载所有信息的点","blackhole",{D:1,M:-1}],["一场曾经照亮过整个星系的壮丽光影","supernova",{C:-1,T:1}],["什么都不留下，回归最初的对称与虚无","vacuum",{E:1,D:-1}]]},
+  {q:"你最迷恋的物理量是？",o:[["引力：那种无法抗拒的吸引与拉扯","blackhole",{D:1,M:1}],["频率：那种永恒不变的跳动与节奏","pulsar",{O:1,C:1}],["温度：那种从绝对零度到亿万度的跨度","solarflare",{T:1,C:-1}],["概率：那种在存在与不存在之间的游离","quantum",{M:-1,O:-1}]]},
+  {q:"在广袤的深空中，你更愿意成为？",o:[["被万众瞩目、照亮黑暗的灯塔","quasar",{C:-1,T:1,M:1}],["默默无闻、却支撑起星系结构的骨架","darkmatter",{D:1,E:-1,M:1}],["挣脱一切束缚、永不回头的旅者","rogue",{D:-1,T:-1,M:1}],["在尘埃中静静等待重生的种子","nebula",{D:-1,C:-1,E:1}]]},
+  {q:"对于「边界」，你的态度是？",o:[["边界是神圣的，它定义了我的存在","fractal",{O:1,M:-1}],["边界是脆弱的，我生来就是为了跨越它","solarflare",{C:-1,O:-1}],["边界是不存在的，一切都在相互渗透","quantum",{O:-1,M:-1}],["边界是绝望的，一旦进入便无法逃离","blackhole",{D:1,O:1}]]},
+  {q:"你如何处理内心的能量？",o:[["小心翼翼地将其禁锢在完美的结构中","photon",{O:1,T:1,M:-1}],["任由其在虚无中进行无序的涨落","vacuum",{O:-1,C:-1,M:-1}],["通过不断的自旋与摩擦将其转化为磁场","pulsar",{O:1,C:1}],["在积压到极限后进行毁灭性的释放","supernova",{C:-1,T:1}]]},
+  {q:"你认为生命的本质更接近于？",o:[["一场精密的、自我复制的几何游戏","fractal",{O:1,M:-1}],["一次偶然的、在虚空中产生的扰动","vacuum",{C:-1,E:1}],["一段漫长的、向着热寂进发的旅程","entropy",{C:1,E:1}],["一种强烈的、试图对抗引力的意志","rogue",{D:-1,O:-1}]]},
+  {q:"当你在黑暗中感到孤独，你会？",o:[["发出最强的脉冲，寻找可能的回响","pulsar",{E:1,C:1}],["向内深潜，在自我的微观世界里寻找无限","quantum",{M:-1,O:-1}],["加速穿行，在速度中忘却孤独","rogue",{D:-1,T:-1}],["静静封存，等待下一次宇宙大爆炸","permafrost",{E:1,T:-1}]]},
+  {q:"你对「完美」的定义是？",o:[["绝对的对称与不可观测的叠加","quantum",{O:-1,M:-1}],["无穷无尽、细节一致的重复","fractal",{O:1,M:-1}],["吞噬一切后达成的终极统一","blackhole",{D:1,O:1}],["热量均匀分布后的彻底寂静","entropy",{C:1,T:-1}]]},
+  {q:"如果宇宙重新开始，你希望？",o:[["保留所有的记忆，不再重复旧的错误","gravitywave",{E:1,M:1}],["彻底抹除痕迹，开启一场全新的随机","vacuum",{E:-1,C:-1}],["建立更严密的定律，杜绝一切混乱","pulsar",{O:1,C:1}],["给予生命更多的能量，让其尽情燃烧","solarflare",{T:1,C:-1}]]}
 ];
 
-let cur=0; const dS={R:0,B:0,S:0,T:0};
+let cur=0; const dS={C:0,D:0,O:0,T:0,M:0,E:0};
 function start() { document.getElementById('cover').style.display='none'; document.getElementById('quiz').style.display='block'; renderQ(); }
 function renderQ() {
   const q = Q[cur]; document.getElementById('qText').innerText = q.q;
-  document.getElementById('qNum').innerText = "CHAPTER " + (cur+1).toString().padStart(2,'0');
+  document.getElementById('qNum').innerText = "PHASE " + (cur+1).toString().padStart(2,'0');
   document.getElementById('progress').style.width = ((cur+1)/Q.length*100) + "%";
   const opts = document.getElementById('qOpts'); opts.innerHTML = '';
   q.o.forEach((o, i) => {
@@ -144,18 +154,18 @@ function showResult() {
     let dot=0, na=0, nb=0;
     for(let d in u) { dot += u[d]*P[k].a[d]; na += u[d]**2; nb += P[k].a[d]**2; }
     let cos = (na&&nb) ? dot/(Math.sqrt(na)*Math.sqrt(nb)) : 0;
-    scores.push({key:k, val: cos + (Math.random()*0.15)}); 
+    scores.push({key:k, val: cos + (Math.random()*0.2)}); 
   });
   scores.sort((a,b)=>b.val - a.val);
   const win = P[scores[0].key];
   document.getElementById('resTitle').innerText = win.n;
   document.getElementById('resSub').innerText = win.s;
   document.getElementById('resDesc').innerText = win.d;
-  document.getElementById('resConflict').innerText = win.c;
+  document.getElementById('resParadox').innerText = win.p;
   document.getElementById('tagScent').innerText = win.sc;
-  document.getElementById('tagNote').innerText = win.note;
-  document.getElementById('tagAuthor').innerText = win.author;
-  document.getElementById('tagHue').innerText = win.hue;
+  document.getElementById('tagFreq').innerText = win.fr;
+  document.getElementById('tagSync').innerText = win.sy;
+  document.getElementById('tagProfile').innerText = win.pr;
   document.getElementById('result').style.display = 'block';
   window.scrollTo({top:0, behavior:'smooth'});
 }
